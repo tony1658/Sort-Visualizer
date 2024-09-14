@@ -8,5 +8,11 @@
     ":prConcurrentLimit10",
     ":rebaseStalePrs",
     ":pinDependencies"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "pinVersions": false
+    }
   ]
 }
