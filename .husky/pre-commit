@@ -1,0 +1,12 @@
+if [[ "$BRANCH_NAME" =~ ^(renovate|dependabot) ]]; then
+  exit 0;
+fi
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+REGEX="^(build|chore|ci|docs|feat|fix|perf|style|test)(\/.+)?$"
+
+if ! [[ $BRANCH =~ $REGEX ]]; then
+  echo "Your commit was rejected due to the branch name."
+  echo "Please rename your branch with '(build|chore|ci|docs|feat|fix|perf|style|test)/' syntax."
+  exit 1
+fi
