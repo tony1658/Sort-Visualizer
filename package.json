@@ -12,7 +12,8 @@
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
     "test": "jest",
-    "prepare": "husky"
+    "prepare": "husky",
+    "postinstall": "npx next telemetry disable"
   },
   "engines": {
     "node": ">=20.17.0"
