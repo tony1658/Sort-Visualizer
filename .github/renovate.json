@@ -12,7 +12,7 @@
   "packageRules": [
     {
       "matchManagers": ["github-actions"],
-      "pinVersions": false
+      "rangeStrategy": "replace"
     }
   ]
 }
