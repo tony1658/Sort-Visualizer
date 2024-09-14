@@ -1,0 +1,10 @@
+# Build artifacts
+.next/
+.swc/
+.turbo/
+
+# Project
+fonts
+
+# PNPM
+pnpm-lock.yaml
