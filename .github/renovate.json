@@ -1,6 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:best-practices",
+    ":dependencyDashboard",
+    "npm:unpublishSafe",
+    "schedule:earlyMondays",
+    ":prConcurrentLimit10",
+    ":rebaseStalePrs",
+    ":pinDependencies"
   ]
 }
