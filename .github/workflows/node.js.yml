@@ -2,9 +2,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main", "dev" ]
+    branches: ['main', 'dev']
   pull_request:
-    branches: [ "main", "dev" ]
+    branches: ['main', 'dev']
+
+env:
+  HUSKY: 0
 
 jobs:
   install:
@@ -13,18 +16,18 @@ jobs:
       matrix:
         node-version: [20]
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9
-    - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
   build:
     needs: [install]
@@ -33,20 +36,21 @@ jobs:
       matrix:
         node-version: [20]
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9
-    - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
-    - name: Build dependencies
-      run: pnpm build
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build dependencies
+        # During the build phase Next.js lints and type checks the code by default
+        run: pnpm build
 
   test:
     needs: [install]
@@ -55,20 +59,20 @@ jobs:
       matrix:
         node-version: [20]
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9
-    - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
-    - name: Run tests
-      run: pnpm test --passWithNoTests
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run tests
+        run: pnpm run test --passWithNoTests
 
   code-style:
     needs: [install]
@@ -77,20 +81,17 @@ jobs:
       matrix:
         node-version: [20]
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9
-    - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
-    - name: Run lint
-      run: pnpm lint
-    - name: Run formatter
-      run: pnpm format
-
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run formatter
+        run: pnpm format

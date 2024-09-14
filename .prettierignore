@@ -1,10 +1,32 @@
-# Build artifacts
-.next/
-.swc/
-.turbo/
+# ci
+cache
 
-# Project
+# build artifacts
+.next
+.swc
+.turbo
+.vercel
+.output
+out/
+
+# production
+build
 fonts
 
-# PNPM
+# dependencies
+.pnpm-store
 pnpm-lock.yaml
+
+# testing
+coverage
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# misc
+dist
+.vscode
+.DS_Store
+*.pem
+.eslintcache
