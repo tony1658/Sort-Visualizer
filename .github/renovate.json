@@ -7,12 +7,7 @@
     "schedule:earlyMondays",
     ":prConcurrentLimit10",
     ":rebaseStalePrs",
-    ":pinDependencies"
-  ],
-  "packageRules": [
-    {
-      "matchManagers": ["github-actions"],
-      "pinVersions": false
-    }
+    ":pinDependencies",
+    "helpers:pinGitHubActionDigestsToSemver"
   ]
 }
