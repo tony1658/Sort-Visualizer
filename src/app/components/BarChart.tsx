@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
 const Bar = dynamic(() => import('./Bar'), { ssr: false });
