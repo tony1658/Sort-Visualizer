@@ -7,3 +7,8 @@ export const cnJoin = (...inputs: ClassNameValue[]) => {
   return twJoin(inputs);
 };
 
+export const getRandomArrayIndex = <T>(
+  array: ReadonlyArray<T>
+) => {
+  return (array.length * Math.random()) << 0;
+};
